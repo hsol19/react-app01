@@ -1,8 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
+//component
+
+import Search from './Component/Search';
+import Addinfo from './Component/Addinfo';
+import AddAppointment from './Component/AddAppointment';
+
+//source
+import appointData from './data.json'
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {BiArchive} from 'react-icons/bi'
+
+function App(){
+  return(
+    <article>
+      <h3>
+        <BiArchive />예약시스템
+        </h3>
+      <AddAppointment />
+
+      <Search/>
+
+      <div id="list">
+        <ul>
+          {
+            appointData.map( (item) => (
+              <Addinfo
+                key={item.id}
+                appointment ={item}/>
+            ))
+          }
+        </ul>
+      </div>
+  </article>
+  )
+}
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,7 +45,4 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
